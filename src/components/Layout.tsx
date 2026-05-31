@@ -3,6 +3,8 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Nav from './Nav'
 import Footer from './Footer'
 import SmoothScroll from '../lib/SmoothScroll'
+import Aurora from '../canvas/Aurora'
+import FxPanel from './FxPanel'
 
 const SceneCanvas = lazy(() => import('../canvas/SceneCanvas'))
 
@@ -22,6 +24,8 @@ export default function Layout() {
         <Suspense fallback={null}>
           <SceneCanvas />
         </Suspense>
+        <Aurora />
+        <FxPanel />
         <Nav />
         <main key={location.pathname} className="flex-1 page-fade">
           <Outlet />

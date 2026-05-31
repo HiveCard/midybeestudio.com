@@ -6,6 +6,7 @@ import Swarm from './Swarm'
 import { useSceneStore } from '../store/scene'
 import { useHasMounted } from './useHasMounted'
 import { isWebGLAvailable } from './webgl'
+import { useFxStore, FX } from '../dev/fx'
 
 export default function SceneCanvas() {
   const mounted = useHasMounted()
@@ -22,9 +23,13 @@ export default function SceneCanvas() {
     return () => mq.removeEventListener('change', apply)
   }, [setReducedMotion])
 
-  if (!mounted || !isWebGLAvailable()) return null
+  const fx = useFxStore((s) => s.fx)
+  const cfg = FX[fx]
 
-  const showBloom = perfTier === 'high' && !reducedMotion
+  // Only the particle variants use the WebGL canvas; aurora/off render elsewhere.
+  if (!mounted || !isWebGLAvailable() || cfg.kind !== 'particles') return null
+
+  const showBloom = !!cfg.bloom && perfTier === 'high' && !reducedMotion
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
