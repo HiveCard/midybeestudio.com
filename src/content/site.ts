@@ -13,6 +13,7 @@ export const siteMeta = {
   name: 'midybee studio',
   legalName: 'MIDYBEE SOLUTIONS OPC',
   domain: 'midybeestudio.com',
+  url: 'https://midybeestudio.com',
   location: 'Olongapo, Philippines',
   email: 'hello@midybee.com',
   facebook: 'https://www.facebook.com/HiveCardApp',
