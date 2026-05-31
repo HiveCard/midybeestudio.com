@@ -15,9 +15,13 @@
     "@fontsource-variable/fraunces": "^5.2.9",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource-variable/outfit": "^5.2.8",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "@react-three/postprocessing": "^3.0.4",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^6",
+    "three": "^0.171.0",
     "zustand": "^5.0.14"
   },
   "devDependencies": {
@@ -27,6 +31,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
+    "@types/three": "^0.171.0",
     "@vitejs/plugin-react": "^4.7.0",
     "jsdom": "^25.0.1",
     "tailwindcss": "^4.3.0",
