@@ -17,7 +17,7 @@
     "@fontsource-variable/outfit": "^5.2.8",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-router-dom": "^7.16.0",
+    "react-router-dom": "^6",
     "zustand": "^5.0.14"
   },
   "devDependencies": {
@@ -32,7 +32,7 @@
     "tailwindcss": "^4.3.0",
     "typescript": "^5.9.3",
     "vite": "^6.4.2",
-    "vite-react-ssg": "^0.9.1-beta.1",
+    "vite-react-ssg": "^0.9.0",
     "vitest": "^3.2.4"
   }
 }
