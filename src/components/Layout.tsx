@@ -10,7 +10,7 @@ export default function Layout() {
   const location = useLocation()
   return (
     <SmoothScroll>
-      <div className="relative flex min-h-screen flex-col bg-ink">
+      <div className="relative isolate flex min-h-screen flex-col bg-ink">
         <div
           className="pointer-events-none fixed inset-0 -z-20"
           aria-hidden="true"
