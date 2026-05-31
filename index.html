@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>midybee studio — privacy-first apps, built in the Philippines</title>
+<meta name="description" content="midybee studio is an independent software studio in Olongapo, Philippines, building privacy-first apps. Maker of HiveCard.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --slate-950:#0b1120;
+    --slate-900:#0f172a;
+    --slate-800:#1e293b;
+    --slate-600:#475569;
+    --slate-400:#94a3b8;
+    --slate-300:#cbd5e1;
+    --amber-300:#fcd34d;
+    --amber-400:#fbbf24;
+    --amber-500:#f59e0b;
+    --amber-700:#b45309;
+    --cream:#fffbeb;
+    --cream-200:#fef3c7;
+    --cream-border:#fde68a;
+    --display:"Fraunces",Georgia,serif;
+    --body:"Outfit",-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    background:var(--slate-950);
+    color:var(--cream);
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--amber-400);color:var(--slate-950)}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.1rem clamp(1.25rem,5vw,4rem);
+    backdrop-filter:blur(12px);
+    background:rgba(11,17,32,.55);
+    border-bottom:1px solid rgba(251,191,36,.08);
+    transition:background .3s;
+  }
+  nav.scrolled{background:rgba(11,17,32,.9)}
+  .brand{display:flex;align-items:center;gap:.7rem;font-weight:500;letter-spacing:.01em}
+  .brand .mark{width:38px;height:38px;border-radius:11px;background:var(--slate-900);
+    border:2px solid var(--amber-500);display:grid;place-items:center;
+    font-family:var(--display);font-weight:600;color:var(--amber-400);font-size:1.5rem;line-height:1;padding-bottom:3px}
+  .brand b{font-weight:600;font-size:1.18rem}
+  .brand span{color:var(--amber-500);font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;font-weight:500}
+  .nav-links{display:flex;gap:2rem;align-items:center;font-size:.95rem}
+  .nav-links a{color:var(--slate-300);transition:color .2s}
+  .nav-links a:hover{color:var(--amber-400)}
+  .nav-cta{padding:.5rem 1.1rem;border:1px solid var(--amber-500);border-radius:999px;color:var(--amber-400)!important}
+  .nav-cta:hover{background:var(--amber-500);color:var(--slate-950)!important}
+  @media(max-width:760px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* ---------- hero ---------- */
+  header{
+    position:relative;min-height:100vh;display:flex;align-items:center;
+    padding:8rem clamp(1.25rem,5vw,4rem) 4rem;overflow:hidden;
+  }
+  .hero-glow{position:absolute;inset:0;z-index:0;
+    background:radial-gradient(circle at 78% 30%,rgba(245,158,11,.18),transparent 45%),
+               radial-gradient(circle at 12% 80%,rgba(251,191,36,.08),transparent 40%);}
+  .hex-field{position:absolute;inset:0;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg width='56' height='100' viewBox='0 0 56 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 0L56 16v33L28 66 0 49V16z' fill='none' stroke='%23fbbf24' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E");}
+  .hero-inner{position:relative;z-index:2;max-width:1000px}
+  .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.82rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--amber-400);margin-bottom:1.8rem;font-weight:500;
+    opacity:0;animation:rise .7s .1s forwards}
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--amber-500)}
+  h1{font-family:var(--display);font-weight:500;font-size:clamp(2.7rem,7vw,5.6rem);
+    line-height:1.02;letter-spacing:-.02em;margin-bottom:1.6rem;max-width:14ch}
+  h1 .it{font-style:italic;color:var(--amber-400)}
+  h1 .ln{display:block;opacity:0;animation:rise .8s forwards}
+  h1 .ln:nth-child(1){animation-delay:.18s}
+  h1 .ln:nth-child(2){animation-delay:.3s}
+  h1 .ln:nth-child(3){animation-delay:.42s}
+  .lede{font-size:clamp(1.05rem,1.7vw,1.3rem);color:var(--slate-300);max-width:54ch;
+    margin-bottom:2.6rem;opacity:0;animation:rise .8s .56s forwards}
+  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:rise .8s .68s forwards}
+  .btn{display:inline-flex;align-items:center;gap:.55rem;padding:.95rem 1.7rem;border-radius:999px;
+    font-weight:500;font-size:1rem;transition:transform .2s,box-shadow .2s,background .2s}
+  .btn-primary{background:var(--amber-500);color:var(--slate-950)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(245,158,11,.5);background:var(--amber-400)}
+  .btn-ghost{border:1px solid var(--slate-600);color:var(--cream)}
+  .btn-ghost:hover{border-color:var(--amber-500);color:var(--amber-400)}
+  .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;
+    color:var(--slate-400);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;
+    display:flex;flex-direction:column;align-items:center;gap:.6rem;opacity:0;animation:fade 1s 1.2s forwards}
+  .scroll-hint .line{width:1px;height:34px;background:linear-gradient(var(--amber-500),transparent);animation:drop 1.8s infinite}
+
+  /* ---------- sections ---------- */
+  section{padding:clamp(4.5rem,10vw,8rem) clamp(1.25rem,5vw,4rem);position:relative}
+  .sec-head{max-width:680px;margin-bottom:3.5rem}
+  .sec-tag{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--amber-500);font-weight:500}
+  .sec-title{font-family:var(--display);font-weight:500;font-size:clamp(2rem,4vw,3.1rem);
+    line-height:1.08;letter-spacing:-.015em;margin:.9rem 0 1.1rem}
+  .sec-sub{color:var(--slate-300);font-size:1.08rem;max-width:56ch}
+
+  /* ---------- about / values ---------- */
+  #studio{background:var(--slate-900);border-top:1px solid rgba(251,191,36,.08);border-bottom:1px solid rgba(251,191,36,.08)}
+  .values{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:1rem}
+  .value{padding:2rem;border:1px solid var(--slate-800);border-radius:18px;background:var(--slate-950);
+    transition:border-color .3s,transform .3s}
+  .value:hover{border-color:var(--amber-500);transform:translateY(-4px)}
+  .value .ic{width:46px;height:46px;border-radius:13px;background:rgba(245,158,11,.12);
+    display:grid;place-items:center;margin-bottom:1.2rem;font-size:1.4rem}
+  .value h3{font-family:var(--display);font-weight:500;font-size:1.3rem;margin-bottom:.5rem}
+  .value p{color:var(--slate-400);font-size:.97rem;line-height:1.6}
+
+  /* ---------- apps ---------- */
+  .apps{display:grid;gap:2rem}
+  .app-card{display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center;
+    padding:2.4rem;border-radius:24px;background:linear-gradient(135deg,var(--slate-900),var(--slate-800));
+    border:1px solid var(--slate-800);transition:border-color .3s,transform .3s;position:relative;overflow:hidden}
+  .app-card:hover{border-color:var(--amber-500);transform:translateY(-4px)}
+  .app-card::after{content:"";position:absolute;top:-40%;right:-10%;width:300px;height:300px;
+    background:radial-gradient(circle,rgba(245,158,11,.1),transparent 70%);pointer-events:none}
+  .app-icon{width:84px;height:84px;border-radius:22px;display:grid;place-items:center;flex-shrink:0;
+    box-shadow:0 10px 30px -10px rgba(0,0,0,.6)}
+  .hivecard-icon{background:var(--slate-950);border:2px solid var(--amber-500)}
+  .app-body h3{font-family:var(--display);font-weight:600;font-size:1.7rem;margin-bottom:.15rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+  .pill{font-family:var(--body);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+    padding:.25rem .6rem;border-radius:999px;background:rgba(74,222,128,.14);color:#4ade80;font-weight:500}
+  .app-body .tag{color:var(--amber-400);font-size:.92rem;font-weight:500;margin-bottom:.6rem}
+  .app-body p{color:var(--slate-300);font-size:1rem;max-width:52ch}
+  .app-feats{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:.9rem;font-size:.85rem;color:var(--slate-400)}
+  .app-feats span{display:flex;align-items:center;gap:.4rem}
+  .app-feats span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--amber-500)}
+  .app-link{align-self:center;white-space:nowrap}
+  .soon-card{display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center;
+    padding:2.4rem;border-radius:24px;border:1px dashed var(--slate-600);background:transparent}
+  .soon-icon{width:84px;height:84px;border-radius:22px;display:grid;place-items:center;flex-shrink:0;
+    background:var(--slate-900);border:1px dashed var(--slate-600);color:var(--slate-600);font-size:2rem}
+  .soon-card h3{font-family:var(--display);font-weight:500;font-size:1.5rem;color:var(--slate-300)}
+  .soon-card p{color:var(--slate-600);font-size:.97rem;margin-top:.2rem}
+  @media(max-width:720px){
+    .app-card{grid-template-columns:1fr;text-align:left}
+    .app-link{justify-self:start}
+  }
+
+  /* ---------- trust ---------- */
+  #trust{text-align:center}
+  .trust-head{max-width:640px;margin:0 auto 3rem}
+  .trust-head .sec-title{margin-bottom:.8rem}
+  .trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.4rem;max-width:980px;margin:0 auto}
+  .trust-card{padding:2rem 1.6rem;border:1px solid var(--slate-800);border-radius:18px;background:var(--slate-900);
+    text-align:left;transition:border-color .3s,transform .3s;position:relative}
+  .trust-card:hover{border-color:var(--amber-500);transform:translateY(-4px)}
+  .trust-card .badge{width:48px;height:48px;border-radius:14px;background:rgba(245,158,11,.12);
+    display:grid;place-items:center;margin-bottom:1.1rem;color:var(--amber-400)}
+  .trust-card h3{font-family:var(--display);font-weight:500;font-size:1.18rem;margin-bottom:.4rem}
+  .trust-card p{color:var(--slate-400);font-size:.94rem;line-height:1.55}
+  .trust-card .verified{display:inline-flex;align-items:center;gap:.35rem;margin-top:.9rem;
+    font-size:.78rem;letter-spacing:.04em;color:#4ade80;font-weight:500}
+  .trust-card .verified svg{width:15px;height:15px}
+  .reg-line{max-width:720px;margin:2.6rem auto 0;padding:1.1rem 1.5rem;border-radius:14px;
+    background:var(--slate-900);border:1px solid var(--slate-800);color:var(--slate-300);
+    font-size:.92rem;line-height:1.6;display:flex;align-items:center;gap:.8rem;justify-content:center;flex-wrap:wrap}
+  .reg-line svg{width:18px;height:18px;color:var(--amber-500);flex-shrink:0}
+
+  /* ---------- product features ---------- */
+  .prod-feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.3rem;margin-top:2.4rem}
+  .pf{padding:1.7rem;border:1px solid var(--slate-800);border-radius:16px;background:var(--slate-900);
+    transition:border-color .3s,transform .3s}
+  .pf:hover{border-color:var(--amber-500);transform:translateY(-3px)}
+  .pf .ic{width:42px;height:42px;border-radius:12px;background:rgba(245,158,11,.12);
+    display:grid;place-items:center;margin-bottom:1rem;color:var(--amber-400)}
+  .pf .ic svg{width:22px;height:22px}
+  .pf h4{font-family:var(--display);font-weight:500;font-size:1.12rem;margin-bottom:.35rem}
+  .pf p{color:var(--slate-400);font-size:.92rem;line-height:1.55}
+
+  /* ---------- contact ---------- */
+  #contact{background:var(--slate-900);border-top:1px solid rgba(251,191,36,.08)}
+  .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+  @media(max-width:820px){.contact-wrap{grid-template-columns:1fr;gap:2.5rem}}
+  .contact-actions{display:flex;flex-direction:column;gap:1rem;margin-top:1.8rem}
+  .contact-row{display:flex;align-items:center;gap:1rem;padding:1.2rem 1.4rem;border-radius:16px;
+    background:var(--slate-950);border:1px solid var(--slate-800);transition:border-color .3s,transform .3s}
+  .contact-row:hover{border-color:var(--amber-500);transform:translateX(4px)}
+  .contact-row .ic{width:42px;height:42px;border-radius:12px;background:rgba(245,158,11,.12);
+    display:grid;place-items:center;font-size:1.2rem;flex-shrink:0}
+  .contact-row b{display:block;font-weight:500;font-size:1rem}
+  .contact-row small{color:var(--slate-400);font-size:.85rem}
+  .form-field{margin-bottom:1.1rem}
+  .form-field label{display:block;font-size:.85rem;color:var(--slate-300);margin-bottom:.45rem;letter-spacing:.02em}
+  .form-field input,.form-field textarea{width:100%;padding:.85rem 1rem;border-radius:12px;
+    background:var(--slate-950);border:1px solid var(--slate-800);color:var(--cream);
+    font-family:var(--body);font-size:.98rem;transition:border-color .2s}
+  .form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--amber-500)}
+  .form-field textarea{resize:vertical;min-height:120px}
+  .form-note{font-size:.82rem;color:var(--slate-400);margin-top:.8rem}
+
+  /* ---------- footer ---------- */
+  footer{padding:3.5rem clamp(1.25rem,5vw,4rem) 2.5rem;background:var(--slate-950);
+    border-top:1px solid rgba(251,191,36,.1)}
+  .foot-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.5rem}
+  .foot-social{display:flex;gap:.8rem}
+  .foot-social a{width:42px;height:42px;border-radius:12px;border:1px solid var(--slate-800);
+    display:grid;place-items:center;color:var(--slate-300);transition:all .25s}
+  .foot-social a:hover{border-color:var(--amber-500);color:var(--amber-400);transform:translateY(-3px)}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+    padding-top:1.8rem;border-top:1px solid var(--slate-800);font-size:.85rem;color:var(--slate-400)}
+  .foot-bottom .legal{max-width:60ch;line-height:1.5}
+
+  /* ---------- anim ---------- */
+  @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fade{to{opacity:1}}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#top" class="brand">
+    <span class="mark">m</span>
+    <span style="display:flex;flex-direction:column;line-height:1.05">
+      <b>midybee</b><span>studio</span>
+    </span>
+  </a>
+  <div class="nav-links">
+    <a href="#studio">About</a>
+    <a href="#apps">Product</a>
+    <a href="#contact">Contact</a>
+    <a href="https://www.facebook.com/HiveCardApp" target="_blank" rel="noopener" class="nav-cta">Follow</a>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="hero-glow"></div>
+  <div class="hex-field"></div>
+  <div class="hero-inner">
+    <span class="eyebrow">Independent software studio · Olongapo, PH</span>
+    <h1>
+      <span class="ln">We build</span>
+      <span class="ln"><span class="it">privacy-first</span> apps</span>
+      <span class="ln">people can trust.</span>
+    </h1>
+    <p class="lede">midybee is a solo-led studio crafting thoughtful, privacy-respecting software for the Philippine market and the Filipino diaspora — starting with the way people manage money.</p>
+    <div class="hero-cta">
+      <a href="#apps" class="btn btn-primary">See our apps <span aria-hidden="true">→</span></a>
+      <a href="#contact" class="btn btn-ghost">Work with us</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><span class="line"></span></div>
+</header>
+
+<section id="studio">
+  <div class="sec-head reveal">
+    <span class="sec-tag">About us</span>
+    <h2 class="sec-title">Small studio, deliberate craft.</h2>
+    <p class="sec-sub">midybee studio is the home of MIDYBEE SOLUTIONS OPC — a registered Philippine software company building consumer apps that treat your data as yours. No surveillance, no dark patterns, just tools that earn their place on your phone.</p>
+  </div>
+  <div class="values">
+    <div class="value reveal">
+      <div class="ic">🔒</div>
+      <h3>Privacy by default</h3>
+      <p>Your financial life shouldn't be a product. Our apps keep your data on your device wherever possible and ask for nothing they don't need.</p>
+    </div>
+    <div class="value reveal">
+      <div class="ic">🇵🇭</div>
+      <h3>Built for the PH</h3>
+      <p>Designed around how Filipinos actually bank, spend, and save — including the millions of OFWs managing money across borders.</p>
+    </div>
+    <div class="value reveal">
+      <div class="ic">✺</div>
+      <h3>Craft over scale</h3>
+      <p>One maker, focused work. Every screen is considered, every feature earns its keep. Quality you can feel in the details.</p>
+    </div>
+  </div>
+</section>
+
+<section id="apps">
+  <div class="sec-head reveal">
+    <span class="sec-tag">Our product</span>
+    <h2 class="sec-title">Meet HiveCard.</h2>
+    <p class="sec-sub">Our flagship app: a private, on-device way for Filipinos to take control of their credit cards — no bank logins, no data harvesting.</p>
+  </div>
+  <div class="apps">
+    <div class="app-card reveal">
+      <div class="app-icon hivecard-icon">
+        <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+          <text x="23" y="36" text-anchor="middle" font-family="Fraunces,serif" font-size="40" font-weight="600" fill="#fbbf24">H</text>
+        </svg>
+      </div>
+      <div class="app-body">
+        <h3>HiveCard <span class="pill">Live on Play Store</span></h3>
+        <div class="tag">Privacy-first credit card manager</div>
+        <p>Track balances, plan payments, and reach your debt-free date — all without handing your financial data to anyone. Built for Philippine cardholders and OFWs.</p>
+        <div class="app-feats">
+          <span>Smart payment plans</span>
+          <span>Debt-free date</span>
+          <span>On-device privacy</span>
+        </div>
+      </div>
+      <a href="https://hivecard.ph" target="_blank" rel="noopener" class="btn btn-primary app-link">Visit hivecard.ph <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <div class="prod-feats">
+    <div class="pf reveal">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg></div>
+      <h4>Import in seconds</h4>
+      <p>Drop in your statement PDF from 10+ Philippine banks. HiveCard reads it and organizes everything automatically.</p>
+    </div>
+    <div class="pf reveal">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+      <h4>See what to pay</h4>
+      <p>Smart payment plans show exactly how to clear your balance and the date you'll finally be debt-free.</p>
+    </div>
+    <div class="pf reveal">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <h4>Stay private</h4>
+      <p>Everything is encrypted and stored on your device. No bank login, no cloud, no one selling your data.</p>
+    </div>
+    <div class="pf reveal">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <h4>Never miss a due date</h4>
+      <p>Track dues across every card and plan payments around your income, so late fees stop catching you off guard.</p>
+    </div>
+  </div>
+
+  <div class="apps" style="margin-top:2rem">
+    <div class="soon-card reveal">
+      <div class="soon-icon">+</div>
+      <div>
+        <h3>More on the way</h3>
+        <p>We're building our next privacy-first app. Follow along to be the first to know.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-wrap">
+    <div>
+      <div class="sec-head reveal" style="margin-bottom:1.5rem">
+        <span class="sec-tag">Get in touch</span>
+        <h2 class="sec-title">Let's talk.</h2>
+        <p class="sec-sub">Press, partnerships, or just curious about what we're building? We'd love to hear from you.</p>
+      </div>
+      <div class="contact-actions reveal">
+        <a href="https://www.facebook.com/HiveCardApp" target="_blank" rel="noopener" class="contact-row">
+          <div class="ic">👍</div>
+          <div><b>Follow on Facebook</b><small>News, updates, and behind-the-scenes</small></div>
+        </a>
+        <a href="mailto:hello@midybee.com" class="contact-row">
+          <div class="ic">✉️</div>
+          <div><b>hello@midybee.com</b><small>Business & partnership inquiries</small></div>
+        </a>
+        <div class="contact-row">
+          <div class="ic">📍</div>
+          <div><b>Olongapo, Philippines</b><small>MIDYBEE SOLUTIONS OPC</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="form-field">
+        <label for="name">Name</label>
+        <input id="name" type="text" placeholder="Your name">
+      </div>
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="you@example.com">
+      </div>
+      <div class="form-field">
+        <label for="msg">Message</label>
+        <textarea id="msg" placeholder="Tell us a bit about what you have in mind…"></textarea>
+      </div>
+      <button class="btn btn-primary" id="sendBtn" style="width:100%;justify-content:center">Send message</button>
+      <p class="form-note" id="formNote">Opens your email app — no data is collected by this site.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-top">
+    <a href="#top" class="brand">
+      <span class="mark">m</span>
+      <span style="display:flex;flex-direction:column;line-height:1.05">
+        <b>midybee</b><span>studio</span>
+      </span>
+    </a>
+    <div class="foot-social">
+      <a href="https://www.facebook.com/HiveCardApp" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+      </a>
+      <a href="mailto:hello@midybee.com" aria-label="Email">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span class="legal">© <span id="yr"></span> MIDYBEE SOLUTIONS OPC. Registered with the SEC &amp; BIR, Philippines. Built with care in Olongapo.</span>
+    <span>Privacy-first apps · 🇵🇭</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transitionDelay=(i%3*0.08)+'s';io.observe(el);
+  });
+
+  document.getElementById('sendBtn').addEventListener('click',()=>{
+    const n=document.getElementById('name').value.trim();
+    const e=document.getElementById('email').value.trim();
+    const m=document.getElementById('msg').value.trim();
+    const note=document.getElementById('formNote');
+    if(!m){note.textContent='Please add a short message first.';note.style.color='#fbbf24';return;}
+    const subject=encodeURIComponent('midybee inquiry'+(n?' from '+n:''));
+    const body=encodeURIComponent(m+(e?'\n\nReply to: '+e:'')+(n?'\n— '+n:''));
+    location.href=`mailto:hello@midybee.com?subject=${subject}&body=${body}`;
+  });
+</script>
+</body>
+</html>
