@@ -1,6 +1,9 @@
+import SceneMarker from '../components/SceneMarker'
+
 export default function Home() {
   return (
     <section className="relative flex min-h-screen items-center px-6 pt-32 pb-16 md:px-12">
+      <SceneMarker scene="home" />
       <div
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
