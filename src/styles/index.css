@@ -21,7 +21,8 @@
 
 :root { color-scheme: dark; }
 
-html { scroll-behavior: smooth; }
+/* Native smooth-scroll is intentionally OFF — Lenis (src/lib/SmoothScroll.tsx)
+   owns smooth scrolling; the two would otherwise double-animate. */
 
 body {
   margin: 0;
