@@ -13,8 +13,89 @@ export const hivelinkPrivacyMeta = {
   packageName: 'com.midybee.hivelink',
   dataController: 'MIDYBEE SOLUTIONS OPC',
   dataControllerLocation: 'Olongapo, Philippines',
-  contactEmail: 'hello@midybee.com',
+  // TODO: swap to privacy@midybeestudio.com once the Workspace alias
+  // is live (see task #89). Using the working login mailbox until then.
+  contactEmail: 'walbarda@midybeestudio.com',
+  developerName: 'Midybee Studio',
+  appName: 'HiveLink',
 }
+
+export interface DeletionStep {
+  title: string
+  body: string
+  whatItRemoves: string
+}
+
+export const inAppDeletion: DeletionStep[] = [
+  {
+    title: 'Reset identity',
+    body: 'Open the app → Settings → tap "Reset identity" → confirm.',
+    whatItRemoves:
+      'Your display name, marker color, anonymous Firebase user ID, and all local preferences. The next ride starts from zero.',
+  },
+  {
+    title: 'Clear ride history',
+    body: 'Open the app → Settings → Ride history → "Clear".',
+    whatItRemoves:
+      'Every saved ride summary from your phone (distance, duration, max speed, max lean, finish rank, idle time, destinations). Local-only; nothing to delete server-side because none of it was ever uploaded.',
+  },
+  {
+    title: 'Leave a ride',
+    body: 'In an active session: tap the back/end action on the map screen.',
+    whatItRemoves:
+      'Your member record and last position node from the Firebase session room. Instant. Other riders see you leave in real time.',
+  },
+  {
+    title: 'Uninstall the app',
+    body: 'Long-press the HiveLink icon → Uninstall.',
+    whatItRemoves:
+      'Every bit of local HiveLink data on your device: preferences, ride history, cached assets.',
+  },
+]
+
+export interface AutoDeletionRow {
+  data: string
+  when: string
+}
+
+export const autoDeletion: AutoDeletionRow[] = [
+  {
+    data: 'Your live position',
+    when: 'Overwrites in place while you ride (no history is retained). Deleted within 60 seconds of session end; never later than 24 hours after the ride started.',
+  },
+  {
+    data: 'Session room (code, name, member list)',
+    when: 'Deleted when the organizer ends the session. A scheduled sweep purges any orphans within 10 minutes.',
+  },
+  {
+    data: 'Push-to-talk voice',
+    when: 'Never recorded. Real-time only. Nothing to delete because nothing is persisted.',
+  },
+  {
+    data: 'Chat text and signal taps',
+    when: 'Deleted with the session room. Local message buffer is cleared when you leave the session.',
+  },
+]
+
+export interface RequestDeletionRow {
+  data: string
+  how: string
+  retention: string
+}
+
+export const requestDeletion: RequestDeletionRow[] = [
+  {
+    data: 'Residual anonymous Firebase user ID',
+    how: 'If you uninstalled the app before using "Reset identity", the anonymous ID may still exist in Firebase. Email us and we will delete it.',
+    retention: 'Removed within 30 days of your email request.',
+  },
+  {
+    data: 'Any support correspondence',
+    how: 'Email us asking us to delete the thread.',
+    retention: 'Removed within 30 days of your email request.',
+  },
+]
+
 
 export interface DataCollectedRow {
   what: string

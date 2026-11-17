@@ -5,6 +5,7 @@ import Studio from './pages/Studio'
 import Work from './pages/Work'
 import Contact from './pages/Contact'
 import HivelinkPrivacy from './pages/HivelinkPrivacy'
+import HivelinkDataDeletion from './pages/HivelinkDataDeletion'
 
 export const routes: RouteRecord[] = [
   {
@@ -18,6 +19,7 @@ export const routes: RouteRecord[] = [
       // Product-scoped legal pages. Not in the main nav — linked from
       // the Play Store listing + from inside the HiveLink app.
       { path: 'hivelink/privacy', element: <HivelinkPrivacy /> },
+      { path: 'hivelink/data-deletion', element: <HivelinkDataDeletion /> },
     ],
   },
 ]
