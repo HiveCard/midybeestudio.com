@@ -3,7 +3,7 @@ import { navLinks, siteMeta } from './site'
 
 describe('site config', () => {
   it('exposes exactly the three top-level nav links', () => {
-    expect(navLinks.map((l) => l.label)).toEqual(['Studio', 'Work', 'Contact'])
+    expect(navLinks.map((l) => l.label)).toEqual(['Company', 'Products', 'Contact'])
   })
 
   it('every nav path is an absolute in-app route', () => {

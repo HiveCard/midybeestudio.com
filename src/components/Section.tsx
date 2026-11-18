@@ -13,7 +13,7 @@ export default function SectionHead({
 }) {
   return (
     <Reveal className="max-w-2xl">
-      <span className="font-mono text-xs uppercase tracking-[0.24em] text-amber-500">{tag}</span>
+      <span className="site-eyebrow">{tag}</span>
       <h2 className="mt-3 font-display text-4xl font-medium leading-tight tracking-tight md:text-5xl">
         {title}
       </h2>

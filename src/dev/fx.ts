@@ -82,7 +82,7 @@ export const FX: Record<Fx, FxConfig> = {
 }
 
 function initialFx(): Fx {
-  // Production always uses the chosen default ('calm'). Only on localhost may the
+  // Production always uses the chosen default ('off'). Only on localhost may the
   // switcher / ?fx= query param / localStorage override it, so prod stays deterministic.
   if (typeof window !== 'undefined') {
     const isLocal = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname)
@@ -93,7 +93,7 @@ function initialFx(): Fx {
       if (stored && stored in FX) return stored
     }
   }
-  return 'calm'
+  return 'off'
 }
 
 interface FxState {

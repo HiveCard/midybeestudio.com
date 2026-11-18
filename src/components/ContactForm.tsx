@@ -29,10 +29,10 @@ export default function ContactForm() {
       <input id="cf-email" type="email" className={field} value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" />
       <label className="mb-2 mt-5 block text-sm text-slate-300" htmlFor="cf-msg">Message</label>
       <textarea id="cf-msg" className={`${field} min-h-32 resize-y`} value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Tell us a bit about what you have in mind…" />
-      <button onClick={send} className="mt-5 w-full rounded-full bg-amber-500 py-3 font-medium text-ink transition hover:bg-amber-400">
-        Send message
+      <button onClick={send} className="site-button site-button-primary mt-5 w-full">
+        Open email draft
       </button>
-      <p className="mt-3 text-sm text-slate-400">{note}</p>
+      <p className="mt-3 text-sm text-slate-400" role="status">{note}</p>
     </div>
   )
 }

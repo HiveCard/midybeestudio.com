@@ -1,64 +1,61 @@
-export interface Feature {
+interface Feature {
   title: string
   body: string
 }
 
 export const hivecard = {
   name: 'HiveCard',
-  tagline: 'Privacy-first credit card manager',
-  status: 'Live on Google Play',
-  summary:
-    'Track balances, plan payments, and reach your debt-free date — all without handing your financial data to anyone. Built for Philippine cardholders and OFWs.',
+  audience: 'For Philippine credit card holders',
+  status: 'Available on the App Store and Google Play',
+  summary: 'Import statements from supported Philippine banks, track due dates across cards, and plan how to pay down your balances. Your financial data stays on your device.',
   site: 'https://hivecard.ph',
+  stores: [
+    { name: 'App Store', url: 'https://apps.apple.com/ph/app/hivecard-ph/id6781399922' },
+    { name: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.midybee.hivecard' },
+  ],
   features: [
     {
-      title: 'Import in seconds',
-      body: 'Drop in your statement PDF from 10+ Philippine banks. HiveCard reads it and organizes everything automatically.',
+      title: 'Import PDF statements',
+      body: 'HiveCard reads statements from more than 10 Philippine banks and organizes the details for you.',
     },
     {
-      title: 'See what to pay',
-      body: "Smart payment plans show exactly how to clear your balance and the date you'll finally be debt-free.",
+      title: 'Plan your payments',
+      body: 'See how different payment amounts affect when you’ll pay off your balance.',
     },
     {
-      title: 'Stay private',
-      body: 'Everything is encrypted and stored on your device. No bank login, no cloud, no one selling your data.',
+      title: 'Keep statements on your device',
+      body: 'HiveCard encrypts your financial data on your device. You can import statements without signing in to your bank.',
     },
     {
-      title: 'Never miss a due date',
-      body: 'Track dues across every card and plan payments around your income, so late fees stop catching you off guard.',
+      title: 'Track due dates',
+      body: 'See upcoming payments across your cards and plan them around your income.',
     },
-  ] as Feature[],
+  ] satisfies Feature[],
 }
 
 export const hivelink = {
   name: 'HiveLink',
-  tagline: 'The live map of your motorcycle group',
-  status: 'Internal testing · Coming soon to Google Play',
-  summary:
-    "The ride is better when nobody gets lost. HiveLink puts your whole group on one live map — distance, direction, who's up front, who's falling behind — the moment you set off. No accounts. No history. Just the ride.",
-  playStoreUrl: null as string | null, // set after Internal Testing opt-in URL is live
+  tagline: 'Live maps for motorcycle groups',
+  audience: 'For motorcycle groups worldwide',
+  status: 'Internal testing',
+  summary: 'Join a ride with a shared code, see where everyone is on a live map, and use push-to-talk or quick signals to coordinate with the group.',
+  playStoreUrl: null as string | null, // Set when public installation is available.
   features: [
     {
-      title: 'One code starts the ride.',
-      body: 'Pick a name. Share a 6-character code. Everyone sees everyone the second they join. Up to 20 riders per session.',
+      title: 'Join with a ride code',
+      body: 'Share a six-character code with your group. Each ride session supports up to 20 riders.',
     },
     {
-      title: 'See the whole pack at a glance.',
-      body: 'A dark HUD map with a color per rider. Live distance to each one. Pack-order rank when a destination is set. Chevrons showing where each rider is heading.',
+      title: 'See riders on a live map',
+      body: 'Check each rider’s location, direction, and distance from you. With a destination set, you can also see the group’s order by progress.',
     },
     {
-      title: 'Talk without stopping.',
-      body: 'Push-to-talk voice between session members, like a helmet intercom that works at any distance. One-tap signals for STOP, CAUTION, FUEL, LOW BATT. Group chat for everything else.',
+      title: 'Keep in touch on the road',
+      body: 'Use push-to-talk, group chat, or quick signals for stops, hazards, fuel, and low battery.',
     },
     {
-      title: 'Your tilt, saved.',
-      body: "Live lean angle next to your speed. Peak lean saved per ride in four zones: cruising, spirited, aggressive, track pace. Guards so parking-lot wobbles don't count against you.",
+      title: 'Review your ride',
+      body: 'See your lean angle during a ride and review your peak lean in the ride summary saved on your phone.',
     },
-  ] as Feature[],
-  privacyPromises: [
-    'Anonymous auth. No email, no phone number, no social login.',
-    "Positions overwrite in place. There's no server-side history to subpoena.",
-    'Session rooms delete within a minute of the ride ending.',
-    'No ads. No analytics on your location, session codes, or names. No data to sell.',
-  ] as string[],
+  ] satisfies Feature[],
 }

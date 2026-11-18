@@ -1,13 +1,14 @@
 import { useFxStore, FX, type Fx } from '../dev/fx'
 
-/** Local-only animation switcher. Renders only on localhost so it never ships
- *  to production. Lets us audition background-animation variants live. */
+/** Local-only animation switcher. Open with ?fx=off on localhost. Lets us audition background-animation variants live. */
 export default function FxPanel() {
   const fx = useFxStore((s) => s.fx)
   const setFx = useFxStore((s) => s.setFx)
 
   const isLocal =
-    typeof window !== 'undefined' && /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname)
+    typeof window !== 'undefined' &&
+    /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname) &&
+    new URLSearchParams(window.location.search).has('fx')
   if (!isLocal) return null
 
   return (
