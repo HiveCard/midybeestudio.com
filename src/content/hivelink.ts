@@ -13,9 +13,10 @@ export const hivelinkPrivacyMeta = {
   packageName: 'com.midybee.hivelink',
   dataController: 'MIDYBEE SOLUTIONS OPC',
   dataControllerLocation: 'Olongapo, Philippines',
-  // TODO: swap to privacy@midybeestudio.com once the Workspace alias
-  // is live (see task #89). Using the working login mailbox until then.
-  contactEmail: 'walbarda@midybeestudio.com',
+  // Public contact for HiveLink — privacy requests, deletion requests,
+  // and general support all route here. Google Workspace alias on
+  // midybeestudio.com delivers to the Midybee Studio admin inbox.
+  contactEmail: 'support@midybeestudio.com',
   developerName: 'Midybee Studio',
   appName: 'HiveLink',
 }

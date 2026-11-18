@@ -132,7 +132,7 @@ export default function HivelinkProduct() {
             usual group size, and where you ride. We'll send you an invite.
           </p>
           <a
-            href="mailto:walbarda@midybeestudio.com?subject=HiveLink%20field%20test"
+            href="mailto:support@midybeestudio.com?subject=HiveLink%20field%20test"
             className="mt-8 inline-block rounded-full bg-amber-500 px-6 py-3 font-medium text-ink transition hover:-translate-y-0.5 hover:bg-amber-400"
           >
             Request an invite →
