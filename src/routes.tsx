@@ -6,6 +6,7 @@ import Work from './pages/Work'
 import Contact from './pages/Contact'
 import HivelinkPrivacy from './pages/HivelinkPrivacy'
 import HivelinkDataDeletion from './pages/HivelinkDataDeletion'
+import HivelinkProduct from './pages/HivelinkProduct'
 
 export const routes: RouteRecord[] = [
   {
@@ -16,8 +17,11 @@ export const routes: RouteRecord[] = [
       { path: 'studio', element: <Studio /> },
       { path: 'work', element: <Work /> },
       { path: 'contact', element: <Contact /> },
-      // Product-scoped legal pages. Not in the main nav — linked from
-      // the Play Store listing + from inside the HiveLink app.
+      // HiveLink product + its legal pages. Product page is the Play
+      // Store listing's Website target. Legal pages (privacy, data
+      // deletion) are linked from the Play Console declarations and
+      // from inside the HiveLink app.
+      { path: 'hivelink', element: <HivelinkProduct /> },
       { path: 'hivelink/privacy', element: <HivelinkPrivacy /> },
       { path: 'hivelink/data-deletion', element: <HivelinkDataDeletion /> },
     ],
