@@ -61,7 +61,10 @@ export default function HivelinkProduct() {
 
       {/* What it does */}
       <section className="border-t border-amber-500/10 px-6 py-24 md:px-12">
-        <SectionHead tag="What it does" title="Ride together. Arrive together." />
+        <SectionHead tag="What it does" title="Ride together. Arrive together.">
+          Four things HiveLink does well. The rest, we deliberately don't
+          do.
+        </SectionHead>
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {hivelink.features.map((f, i) => (
             <Reveal
@@ -78,10 +81,10 @@ export default function HivelinkProduct() {
 
       {/* Private by design */}
       <section className="border-t border-amber-500/10 px-6 py-24 md:px-12">
-        <SectionHead tag="Private by design" title="Rules we don't break.">
-          HiveLink shares your location with your group because the product
-          needs it to work — and nothing else. Every design choice follows
-          these constraints.
+        <SectionHead tag="Private by design" title="Four rules. No exceptions.">
+          HiveLink shares your location with your group because the ride
+          needs it. Nothing else. These constraints are load-bearing — if
+          they break, the product doesn't ship.
         </SectionHead>
         <div className="mt-12 max-w-3xl space-y-4">
           {hivelink.privacyPromises.map((p, i) => (
@@ -121,13 +124,12 @@ export default function HivelinkProduct() {
             Field test
           </span>
           <h3 className="mt-3 font-display text-3xl font-medium tracking-tight">
-            Want on the next Saturday ride?
+            Ride with us this Saturday.
           </h3>
           <p className="mt-4 max-w-prose text-slate-300">
             We're field-testing HiveLink with motorcycle convoys in the
             Philippines before opening public install. Tell us your bike, your
-            usual riding group size, and roughly where you ride, and we'll send
-            you an invite.
+            usual group size, and where you ride. We'll send you an invite.
           </p>
           <a
             href="mailto:walbarda@midybeestudio.com?subject=HiveLink%20field%20test"

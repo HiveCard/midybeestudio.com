@@ -32,33 +32,33 @@ export const hivecard = {
 
 export const hivelink = {
   name: 'HiveLink',
-  tagline: 'Live group minimap for motorcycle convoys',
+  tagline: 'The live map of your motorcycle group',
   status: 'Internal testing · Coming soon to Google Play',
   summary:
-    'HiveLink is a live group minimap for motorcycle and convoy rides. Your group joins a session by a 6-character code; everyone sees everyone on a dark HUD map with distance, pack order, and ETA. No accounts, no history, nothing stored after the ride ends.',
+    "The ride is better when nobody gets lost. HiveLink puts your whole group on one live map — distance, direction, who's up front, who's falling behind — the moment you set off. No accounts. No history. Just the ride.",
   playStoreUrl: null as string | null, // set after Internal Testing opt-in URL is live
   features: [
     {
-      title: 'Join by code',
-      body: 'Six-character session code, up to 20 riders, anonymous auth. No email, no phone, no social login — pick a name, join a ride, done.',
+      title: 'One code starts the ride.',
+      body: 'Pick a name. Share a 6-character code. Everyone sees everyone the second they join. Up to 20 riders per session.',
     },
     {
-      title: 'See the whole pack',
-      body: 'Dark HUD map with a color per rider, live distance chips, pack-order rank when a destination is set, and chevrons that show where every rider is heading.',
+      title: 'See the whole pack at a glance.',
+      body: 'A dark HUD map with a color per rider. Live distance to each one. Pack-order rank when a destination is set. Chevrons showing where each rider is heading.',
     },
     {
-      title: 'Talk without stopping',
-      body: 'Push-to-talk voice between session members. One-tap signals for STOP, CAUTION, FUEL, LOW BATT. Group chat for the rest.',
+      title: 'Talk without stopping.',
+      body: 'Push-to-talk voice between session members, like a helmet intercom that works at any distance. One-tap signals for STOP, CAUTION, FUEL, LOW BATT. Group chat for everything else.',
     },
     {
-      title: 'Live lean + ride recap',
-      body: 'Tilt indicator next to your KPH while you ride. Peak lean saved per ride in four zones — cruising, spirited, aggressive, track pace. One-tap share of the ride summary PNG.',
+      title: 'Your tilt, saved.',
+      body: "Live lean angle next to your speed. Peak lean saved per ride in four zones: cruising, spirited, aggressive, track pace. Guards so parking-lot wobbles don't count against you.",
     },
   ] as Feature[],
   privacyPromises: [
-    'No server-side location history. Ever.',
-    'Session rooms deleted within 60 seconds of the ride ending.',
-    'No email, no phone number, no social login. Anonymous auth only.',
-    'No ads SDK. No analytics on coordinates, session codes, or names.',
+    'Anonymous auth. No email, no phone number, no social login.',
+    "Positions overwrite in place. There's no server-side history to subpoena.",
+    'Session rooms delete within a minute of the ride ending.',
+    'No ads. No analytics on your location, session codes, or names. No data to sell.',
   ] as string[],
 }
